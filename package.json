@@ -1,5 +1,5 @@
 {
-  "name": "GameLibrary",
+  "name": "gamelibrary",
   "private": true,
   "scripts": {
     "build": "turbo run build",
