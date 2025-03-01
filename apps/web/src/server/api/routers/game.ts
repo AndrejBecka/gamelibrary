@@ -3,7 +3,7 @@ import {
   GameDeleteOneSchema,
   GameFindUniqueSchema,
   GameUpdateOneSchema,
-} from "zod/schemas";
+} from "~/zod/schemas";
 import {
   createTRPCRouter,
   privateProcedure,
