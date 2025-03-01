@@ -39,7 +39,7 @@ async function main() {
     },
   ];
 
-  const createdCategories = await prisma.category.createMany({
+  await prisma.category.createMany({
     data: categoryData,
   });
 
@@ -69,7 +69,7 @@ async function main() {
       description: "An open-world, action-adventure story set in Night City.",
       coverImage: "/placeholder.svg?height=600&width=1200",
       rating: 4.5,
-      categoryId: categoryMap.get("RPG"),
+      categoryId: categoryMap.get("RPG")!,
       releaseDate: new Date("2020-12-10"),
       publisher: "CD Projekt Red",
       price: 59.99,
@@ -80,7 +80,7 @@ async function main() {
       coverImage:
         "https://image.api.playstation.com/vulcan/img/rnd/202111/0506/hcFeWRVGHYK72uOw6Mn6f4Ms.jpg",
       rating: 4.9,
-      categoryId: categoryMap.get("RPG"),
+      categoryId: categoryMap.get("RPG")!,
       releaseDate: new Date("2022-02-25"),
       publisher: "FromSoftware",
       price: 59.99,
@@ -92,7 +92,7 @@ async function main() {
       coverImage:
         "https://image.api.playstation.com/vulcan/ap/rnd/202302/2321/3098481c9164bb5f33069b37e49fba1a572ea3b89971ee7b.jpg",
       rating: 4.8,
-      categoryId: categoryMap.get("RPG"),
+      categoryId: categoryMap.get("RPG")!,
       releaseDate: new Date("2023-08-03"),
       publisher: "Larian Studios",
       price: 59.99,
@@ -103,7 +103,7 @@ async function main() {
       coverImage:
         "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1716740/capsule_616x353.jpg?t=1727384525",
       rating: 4.6,
-      categoryId: categoryMap.get("RPG"),
+      categoryId: categoryMap.get("RPG")!,
       releaseDate: new Date("2023-09-06"),
       publisher: "Bethesda",
       price: 69.99,
@@ -114,7 +114,7 @@ async function main() {
       coverImage:
         "https://image.api.playstation.com/vulcan/ap/rnd/202405/3021/7b622ad3b2ea4454c5e39caff4db1fd8302f2399abba606d.png",
       rating: 4.7,
-      categoryId: categoryMap.get("RPG"),
+      categoryId: categoryMap.get("RPG")!,
       releaseDate: new Date("2023-06-06"),
       publisher: "Blizzard Entertainment",
       price: 69.99,
@@ -126,7 +126,7 @@ async function main() {
       coverImage:
         "https://image.api.playstation.com/vulcan/ap/rnd/202208/0921/dR9KJAKDW2izPbptHQbh3rnj.png",
       rating: 4.5,
-      categoryId: categoryMap.get("RPG"),
+      categoryId: categoryMap.get("RPG")!,
       releaseDate: new Date("2023-02-10"),
       publisher: "Portkey Games",
       price: 49.99,
@@ -137,7 +137,7 @@ async function main() {
       coverImage:
         "https://image.api.playstation.com/vulcan/ap/rnd/202210/0706/EVWyZD63pahuh95eKloFaJuC.png",
       rating: 4.8,
-      categoryId: categoryMap.get("Action"),
+      categoryId: categoryMap.get("Action")!,
       releaseDate: new Date("2023-03-24"),
       publisher: "Capcom",
       price: 39.99,
@@ -153,10 +153,6 @@ async function main() {
   console.log("✅ Seeding complete!");
 }
 
-main().catch((e) => {
-  console.error("❌ Error seeding database:", e);
-  process.exit(1);
-});
 main()
   .then(async () => {
     await prisma.$disconnect();
