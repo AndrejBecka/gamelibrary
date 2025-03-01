@@ -8,17 +8,21 @@ datasource db {
 }
 
 model Game {
-  id          String  @id @default(uuid()) // Unique identifier
-  title       String
-  description String?
-  coverImage  String
-  rating      Float
-  genre       String?
-  releaseDate String
-  publisher   String?
-  price       String?
-  discount    String?
-  hasDiscount Boolean @default(false)
+  id             String        @id @default(uuid())
+  title          String
+  description    String?
+  coverImage     String
+  rating         Float
+  categoryId     String
+  category       Category      @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  releaseDate    DateTime
+  publisher      String?
+  price          Float
+  discount       Float? // Discount in percentage or currency
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+  specialOfferId String?
+  specialOffer   SpecialOffer? @relation(fields: [specialOfferId], references: [id], onDelete: SetNull)
 
   @@index([title])
 }
@@ -27,21 +31,19 @@ model Category {
   id    String @id @default(uuid())
   name  String
   image String
-}
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 
-model NewRelease {
-  id          String @id @default(uuid())
-  title       String
-  coverImage  String
-  releaseDate String
-  price       String
+  games Game[]
 }
 
 model SpecialOffer {
-  id          String @id @default(uuid())
+  id          String   @id @default(uuid())
   title       String
   description String
-  image       String
-  buttonText  String
-  pixelArt    Boolean @default(false)
+  coverImage  String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  games Game[]
 }
