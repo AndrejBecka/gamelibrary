@@ -6,6 +6,18 @@ export default {
     content: ["./src/**/*.tsx"],
   theme: {
   	extend: {
+		extend: {
+			animation: {
+			  'gradient-text': 'gradientText 3s ease infinite',
+			},
+			keyframes: {
+			  gradientText: {
+				'0%': { backgroundPosition: '100% 0' },
+				'50%': { backgroundPosition: '0% 100%' },
+				'100%': { backgroundPosition: '100% 0' },
+			  },
+			},
+		  },
   		fontFamily: {
   			sans: [
   				'var(--font-geist-sans)',

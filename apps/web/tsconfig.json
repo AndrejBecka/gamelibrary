@@ -3,9 +3,11 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "~/*": ["./src/*"],
-
-    }
+      "~/*": [
+        "./src/*"
+      ]
+    },
+    "jsx": "preserve"
   },
   "include": [
     ".eslintrc.cjs",
@@ -17,5 +19,7 @@
     ".next/types/**/*.ts",
     "postcss.config.mjs"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules"
+  ]
 }
