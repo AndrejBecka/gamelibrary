@@ -10,9 +10,9 @@ export default async function Home() {
 
   return (
     <HydrateClient>
-        <NavigationMenu />
+      <NavigationMenu />
       <div className="min-h-screen">
-        <div className="container mx-auto px-4 py-12">
+        <div className="container mx-auto mt-12 space-y-16 px-4 py-12">
           <TrendingSection />
           <CategoriesSection />
           <SpecialOffers />

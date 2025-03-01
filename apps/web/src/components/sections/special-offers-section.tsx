@@ -5,7 +5,7 @@ import { cn } from "~/lib/utils";
 
 export function SpecialOffers() {
   return (
-    <section className="mb-16">
+    <section>
       <SectionHeader title="Special Offers" viewAllLink="/specialOffers" />
       <div className="grid grid-cols-1 gap-4 rounded-xl md:grid-cols-2 md:gap-6">
         {specialOffers.map((offer) => (
@@ -22,12 +22,17 @@ export function SpecialOffers() {
             />
             <div className="absolute inset-0 flex flex-col justify-center bg-gradient-to-r from-black/70 to-transparent p-8">
               <h3
-                className={`mb-2 font-bold text-white ${offer.pixelArt === true ? "font-vt323 text-4xl" : "text-3xl"}`}
+                className={cn(
+                  `mb-2 font-bold text-white`,
+                  offer.pixelArt === true ? "font-vt323 text-4xl" : "text-3xl",
+                )}
               >
                 {offer.title}
               </h3>
               <p
-                className={`mb-4 text-gray-400 ${offer.pixelArt === true ? "font-vt323" : ""}`}
+                className={cn(`mb-4 text-gray-400`, {
+                  ["font-vt323"]: offer.pixelArt,
+                })}
               >
                 {offer.description}
               </p>
