@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 
 export function Footer() {
@@ -99,13 +98,6 @@ export function Footer() {
         </div>
         <div className="mt-8 flex flex-col items-center justify-between border-t border-gray-700 pt-8 md:flex-row">
           <div className="flex items-center space-y-4 md:space-y-0">
-            {/* <Image
-              src="/placeholder.svg?height=32&width=32"
-              alt="GameStorm Logo"
-              width={32}
-              height={32}
-              className="h-8 w-auto mr-2"
-            /> */}
             <span className="bg-clip-text text-xl font-bold text-transparent text-white">
               Game Storm
             </span>

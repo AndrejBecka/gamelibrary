@@ -1,4 +1,3 @@
-// import { trendingGames } from "~/data/mockup-data";
 import { SectionHeader } from "../cards/section-header";
 import { Carousel } from "../cards/carousel";
 import { api } from "~/trpc/server";
