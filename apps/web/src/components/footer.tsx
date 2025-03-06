@@ -1,13 +1,13 @@
-import Image from "next/image"
-import Link from "next/link"
+import Image from "next/image";
+import Link from "next/link";
 
 export function Footer() {
   return (
-    <footer className="bg-gray-800 dark:bg-gray-950 text-white py-12">
+    <footer className="bg-gray-800 py-12 text-white dark:bg-gray-950">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
           <div>
-            <h3 className="text-lg font-bold mb-4">Game Storm</h3>
+            <h3 className="space-y-4 text-lg font-bold">Game Storm</h3>
             <ul className="space-y-2">
               <li>
                 <Link href="#" className="text-gray-300 hover:text-white">
@@ -32,7 +32,7 @@ export function Footer() {
             </ul>
           </div>
           <div>
-            <h3 className="text-lg font-bold mb-4">Support</h3>
+            <h3 className="space-y-4 text-lg font-bold">Support</h3>
             <ul className="space-y-2">
               <li>
                 <Link href="#" className="text-gray-300 hover:text-white">
@@ -52,7 +52,7 @@ export function Footer() {
             </ul>
           </div>
           <div>
-            <h3 className="text-lg font-bold mb-4">Legal</h3>
+            <h3 className="space-y-4 text-lg font-bold">Legal</h3>
             <ul className="space-y-2">
               <li>
                 <Link href="#" className="text-gray-300 hover:text-white">
@@ -72,7 +72,7 @@ export function Footer() {
             </ul>
           </div>
           <div>
-            <h3 className="text-lg font-bold mb-4">Download</h3>
+            <h3 className="space-y-4 text-lg font-bold">Download</h3>
             <ul className="space-y-2">
               <li>
                 <Link href="#" className="text-gray-300 hover:text-white">
@@ -97,8 +97,8 @@ export function Footer() {
             </ul>
           </div>
         </div>
-        <div className="mt-8 pt-8 border-t border-gray-700 flex flex-col md:flex-row justify-between items-center">
-          <div className="flex items-center mb-4 md:mb-0">
+        <div className="mt-8 flex flex-col items-center justify-between border-t border-gray-700 pt-8 md:flex-row">
+          <div className="flex items-center space-y-4 md:space-y-0">
             {/* <Image
               src="/placeholder.svg?height=32&width=32"
               alt="GameStorm Logo"
@@ -106,14 +106,15 @@ export function Footer() {
               height={32}
               className="h-8 w-auto mr-2"
             /> */}
-            <span className="text-xl font-bold text-white bg-clip-text text-transparent">
+            <span className="bg-clip-text text-xl font-bold text-transparent text-white">
               Game Storm
             </span>
           </div>
-          <div className="text-gray-400 text-sm">© {new Date().getFullYear()} Game Storm. All rights reserved.</div>
+          <div className="text-sm text-gray-400">
+            © {new Date().getFullYear()} Game Storm. All rights reserved.
+          </div>
         </div>
       </div>
     </footer>
-  )
+  );
 }
-

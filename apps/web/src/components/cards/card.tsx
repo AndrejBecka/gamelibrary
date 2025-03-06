@@ -13,7 +13,7 @@ export function GameCard({ game, className = "" }: GameCardProps) {
     <div
       className={`relative overflow-hidden rounded-xl transition-all duration-300 ${className}`}
     >
-      <div className="aspect-[3/4] overflow-hidden rounded-lg">
+      <div className="aspect-[3/4] rounded-lg">
         <Image
           src={game.coverImage || "/placeholder.svg"}
           alt={game.title}
@@ -50,7 +50,7 @@ export function GameCard({ game, className = "" }: GameCardProps) {
         </div>
         {game.price && (
           <div className="mt-2">
-            <span className="font-medium text-white">{game.price}</span>
+            <span className="font-medium text-white">${game.price}</span>
           </div>
         )}
         {game.releaseDate && (
