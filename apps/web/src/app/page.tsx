@@ -7,6 +7,8 @@ import { Footer } from "~/components/footer";
 
 export default async function Home() {
   void api.game.listGames.prefetch();
+  void api.category.listCategories.prefetch();
+  void api.specialOffer.listSpecialOffers.prefetch();
 
   return (
     <HydrateClient>

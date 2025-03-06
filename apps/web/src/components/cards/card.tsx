@@ -24,14 +24,14 @@ export function GameCard({ game, className = "" }: GameCardProps) {
       </div>
       {!!game.discount && (
         <div className="absolute right-3 top-3 rounded bg-red-600 px-2 py-1 text-xs font-bold text-white">
-          {game.discount}
+          {game.discount + "%"}
         </div>
       )}
       <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/80 via-black/30 to-transparent p-4 opacity-0 transition-opacity duration-300 hover:opacity-100">
         <h3 className="line-clamp-2 text-lg font-bold text-white">
           {game.title}
         </h3>
-        {game.rating && (
+        {!!game.rating && (
           <div className="mt-1 flex items-center">
             <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
             <span className="ml-1 text-sm text-white">{game.rating}</span>

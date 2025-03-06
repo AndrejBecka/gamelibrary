@@ -1,17 +1,17 @@
-import { categories } from "~/data/mockup-data";
 import { SectionHeader } from "../cards/section-header";
 import { CategoryCard } from "../cards/category-card";
+import { api } from "~/trpc/server";
 
-
-export function CategoriesSection() {
-    return(
-        <section className="mb-16">
-            <SectionHeader title="Browse by Category" viewAllLink="/categories" />
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6 rounded-md">
-                {categories.map((category) => (
-                    <CategoryCard key={category.id} category={category} />
-                ))}
-            </div>
-        </section>
-    )
+export async function CategoriesSection() {
+  const categories = await api.category.listCategories();
+  return (
+    <section className="space-y-6">
+      <SectionHeader title="Browse by Category" viewAllLink="/categories" />
+      <div className="grid grid-cols-2 gap-4 rounded-md md:grid-cols-3 md:gap-6 lg:grid-cols-6">
+        {categories.map((category) => (
+          <CategoryCard key={category.id} category={category} />
+        ))}
+      </div>
+    </section>
+  );
 }
