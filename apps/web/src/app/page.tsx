@@ -6,7 +6,7 @@ import { SpecialOffers } from "~/components/sections/special-offers-section";
 import { Footer } from "~/components/footer";
 
 export default async function Home() {
-  void api.post.getLatest.prefetch();
+  void api.game.listGames.prefetch();
 
   return (
     <HydrateClient>

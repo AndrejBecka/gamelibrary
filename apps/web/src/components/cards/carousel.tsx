@@ -3,13 +3,13 @@
 import { useState, useRef, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { GameCard } from "./card";
+import { type Game } from "@prisma/client";
 
 interface CarouselSliderProps {
-  items: any[];
-  title: string;
+  items: Game[];
 }
 
-export function Carousel({ items, title }: CarouselSliderProps) {
+export function Carousel({ items }: CarouselSliderProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
   const [isHovering, setIsHovering] = useState(false);
@@ -63,21 +63,21 @@ export function Carousel({ items, title }: CarouselSliderProps) {
 
         {/* Carousel Container */}
         <div className="overflow-hidden" ref={containerRef}>
-        <div
-          className="flex transition-transform duration-500 ease-out"
-          style={{
-            transform: `translateX(-${(currentIndex * 100) / itemsPerScreen}%)`,
-          }}
-        >
-          {items.map((item, index) => (
-            <div
-              key={item.id}
-              className={`w-1/2 flex-none p-2 sm:w-1/3 lg:w-1/4 transition-transform duration-300 ${isHovering ? "hover:z-15 hover:scale-110" : ""}`}
-            >
-              <GameCard game={item} />
-            </div>
-          ))}
-        </div>
+          <div
+            className="flex transition-transform duration-500 ease-out"
+            style={{
+              transform: `translateX(-${(currentIndex * 100) / itemsPerScreen}%)`,
+            }}
+          >
+            {items.map((item) => (
+              <div
+                key={item.id}
+                className={`w-1/2 flex-none p-2 transition-transform duration-300 sm:w-1/3 lg:w-1/4 ${isHovering ? "hover:z-15 hover:scale-110" : ""}`}
+              >
+                <GameCard game={item} />
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Right Arrow */}
