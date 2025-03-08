@@ -95,6 +95,12 @@
   --sidebar-border: 220 13% 91%;
   --sidebar-ring: 217.2 91.2% 59.8%;
 
+  /* shadows */
+  --box-shadow: 0 0 10px rgba(0, 234, 255, 0.2);
+  --neon-box-shadow: 0 0 20px rgba(0, 234, 255, 0.4);
+  --neon-card-shadow-default: 0 0 15px rgba(%, 234,255, 0.1);
+  --neon-card-shadow-hover: 0 0 25px rgba(0, 234, 255, 0.2);
+
   /* Coins colors */
   --coin: rgba(255, 215, 0, 1);
   --coin-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
@@ -237,25 +243,25 @@ body::before {
 
   .neon-border {
     @apply relative border border-neon-blue/30;
-    box-shadow: 0 0 10px rgba(0, 234, 255, 0.2);
+    box-shadow: var(--box-shadow)
   }
 
   .neon-border:hover {
     @apply border-neon-blue/50;
-    box-shadow: 0 0 20px rgba(0, 234, 255, 0.4);
+    box-shadow: var(--neon-box-shadow)
   }
 
   .neon-button:hover {
-    box-shadow: 0 0 20px rgba(0, 234, 255, 0.4);
+    box-shadow: var(--neon-box-shadow)
   }
 
   .neon-card {
     @apply relative overflow-hidden rounded-lg bg-black/50 border border-neon-blue/20 hover:border-neon-blue/40 transition-all duration-300 backdrop-blur-sm;
-    box-shadow: 0 0 15px rgba(0, 234, 255, 0.1);
+    box-shadow: var(--neon-card-shadow-default)
   }
 
   .neon-card:hover {
-    box-shadow: 0 0 25px rgba(0, 234, 255, 0.2);
+    box-shadow: var(--neon-card-shadow-hover)
   }
 
   .neon-input {

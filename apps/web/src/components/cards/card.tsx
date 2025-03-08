@@ -24,7 +24,7 @@ export function GameCard({ game, className = "" }: GameCardProps) {
       </div>
       {!!game.discount && (
         <div className="absolute right-3 top-3 rounded bg-red-600 px-2 py-1 text-xs font-bold text-white">
-          {game.discount + "%"}
+          `{game.discount}%`
         </div>
       )}
       <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/80 via-black/30 to-transparent p-4 opacity-0 transition-opacity duration-300 hover:opacity-100">
