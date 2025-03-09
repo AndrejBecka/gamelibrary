@@ -2,8 +2,10 @@
 
 import { useState, useRef, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { GameCard } from "./card";
+import { GameCard } from "../cards/card";
 import { type Game } from "@prisma/client";
+import { cn } from "~/lib/utils";
+import { CarouselButton } from "./carousel-button";
 
 interface CarouselSliderProps {
   items: Game[];
@@ -53,13 +55,11 @@ export function Carousel({ items }: CarouselSliderProps) {
     >
       <div className="relative flex items-center gap-4">
         {/* Left Arrow */}
-        <button
+        <CarouselButton
           onClick={handlePrev}
-          className={`neon-button absolute left-10 z-20 -translate-x-1/2 rounded-full p-2 px-2 opacity-0 backdrop-blur-sm transition-opacity duration-300 disabled:opacity-0 group-hover:opacity-100 ${currentIndex === 0 ? "invisible" : "visible"} `}
+          direction="left"
           disabled={currentIndex === 0}
-        >
-          <ChevronLeft className="h-6 w-6 text-white" />
-        </button>
+        />
 
         {/* Carousel Container */}
         <div className="overflow-hidden" ref={containerRef}>
@@ -81,13 +81,11 @@ export function Carousel({ items }: CarouselSliderProps) {
         </div>
 
         {/* Right Arrow */}
-        <button
+        <CarouselButton
           onClick={handleNext}
-          className={`neon-button absolute right-0 z-20 -translate-x-1/2 rounded-full p-2 px-2 opacity-0 backdrop-blur-sm transition-opacity duration-300 disabled:opacity-0 group-hover:opacity-100 ${currentIndex >= items.length - itemsPerScreen ? "invisible" : "visible"}`}
+          direction="right"
           disabled={currentIndex >= items.length - itemsPerScreen}
-        >
-          <ChevronRight className="h-6 w-6 text-white" />
-        </button>
+        />
       </div>
 
       {/* Dots Navigation */}
