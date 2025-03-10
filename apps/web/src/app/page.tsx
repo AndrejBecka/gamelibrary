@@ -3,7 +3,7 @@ import NavigationMenu from "~/components/navigation/navigation";
 import { CategoriesSection } from "~/components/sections/categories-section";
 import { TrendingSection } from "~/components/sections/trending-section";
 import { SpecialOffers } from "~/components/sections/special-offers-section";
-import { Footer } from "~/components/footer";
+import { Footer } from "~/components/footer/footer";
 
 export default async function Home() {
   void api.game.listGames.prefetch();
