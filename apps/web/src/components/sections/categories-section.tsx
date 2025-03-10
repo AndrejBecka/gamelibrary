@@ -6,7 +6,7 @@ export async function CategoriesSection() {
   const categories = await api.category.listCategories();
   return (
     <section className="space-y-6">
-      <SectionHeader title="Browse by Category" viewAllLink="/categories" />
+      <SectionHeader title="Browse by Category" hrefToViewAll="/categories" />
       <div className="grid grid-cols-2 gap-4 rounded-md md:grid-cols-3 md:gap-6 lg:grid-cols-6">
         {categories.map((category) => (
           <CategoryCard key={category.id} category={category} />

@@ -6,7 +6,7 @@ export async function SpecialOffers() {
   const offers = await api.specialOffer.listSpecialOffers();
   return (
     <section>
-      <SectionHeader title="Special Offers" viewAllLink="/specialOffers" />
+      <SectionHeader title="Special Offers" hrefToViewAll="/specialOffers" />
       <div className="grid grid-cols-1 gap-4 rounded-xl md:grid-cols-2 md:gap-6">
         {offers.map((offer) => (
           <OfferCard key={offer.id} offer={offer} />

@@ -6,7 +6,7 @@ export async function TrendingSection() {
   const games = await api.game.listGames();
   return (
     <section className="space-y-6">
-      <SectionHeader title="Trending Now" viewAllLink="/trending" />
+      <SectionHeader title="Trending Now" hrefToViewAll="/trending" />
 
       <div className="px-4">
         <Carousel items={games} />
