@@ -15,7 +15,7 @@ export function CategoryCard({ category }: CategoryCardProps) {
       <div className="aspect-video overflow-hidden rounded-xl">
         <Image
           key={category.id}
-          src={category.image || "/placeholder.svg"}
+          src={category.image ?? "/placeholder.svg"}
           alt={category.title}
           width={300}
           height={200}

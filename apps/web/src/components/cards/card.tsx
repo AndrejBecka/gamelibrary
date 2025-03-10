@@ -2,20 +2,24 @@ import Image from "next/image";
 import { Star, ShoppingCart, Plus, ThumbsUp } from "lucide-react";
 import { type Game } from "@prisma/client";
 import { format } from "date-fns";
+import { cn } from "~/lib/utils";
 
 interface GameCardProps {
   game: Game;
   className?: string;
 }
 
-export function GameCard({ game, className = "" }: GameCardProps) {
+export function GameCard({ game, className }: GameCardProps) {
   return (
     <div
-      className={`relative overflow-hidden rounded-xl transition-all duration-300 ${className}`}
+      className={cn(
+        `relative overflow-hidden rounded-xl transition-all duration-300`,
+        className,
+      )}
     >
       <div className="aspect-[3/4] rounded-lg">
         <Image
-          src={game.coverImage || "/placeholder.svg"}
+          src={game.coverImage ?? "/placeholder.svg"}
           alt={game.title}
           width={300}
           height={400}
@@ -24,7 +28,7 @@ export function GameCard({ game, className = "" }: GameCardProps) {
       </div>
       {!!game.discount && (
         <div className="absolute right-3 top-3 rounded bg-red-600 px-2 py-1 text-xs font-bold text-white">
-          `{game.discount}%`
+          {game.discount}%
         </div>
       )}
       <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/80 via-black/30 to-transparent p-4 opacity-0 transition-opacity duration-300 hover:opacity-100">
