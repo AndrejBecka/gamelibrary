@@ -13,7 +13,7 @@ export function GameCard({ game, className }: GameCardProps) {
   return (
     <div
       className={cn(
-        `relative overflow-hidden rounded-xl transition-all duration-300`,
+        "relative overflow-hidden rounded-xl transition-all duration-300",
         className,
       )}
     >

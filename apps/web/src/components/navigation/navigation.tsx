@@ -46,7 +46,7 @@ export const PublicHeaderNavigation = () => {
   return (
     <header
       className={cn(
-        `fixed top-0 z-50 w-full transition-all duration-300`,
+        "fixed top-0 z-50 w-full transition-all duration-300",
         isScrolled
           ? "bg-black/90 backdrop-blur-sm"
           : "bg-gradient-to-b from-black/80 to-transparent",

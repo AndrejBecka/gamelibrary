@@ -53,14 +53,12 @@ export function Carousel({ items }: CarouselSliderProps) {
   return (
     <div className="group flex flex-col gap-4">
       <div className="relative flex items-center gap-4">
-        {/* Left Arrow */}
         <CarouselButton
           onClickAction={handlePrev}
           direction="left"
           disabled={currentIndex === 0}
         />
 
-        {/* Carousel Container */}
         <div className="overflow-hidden" ref={containerRef}>
           <div
             className="flex transition-transform duration-500 ease-out"
@@ -79,7 +77,6 @@ export function Carousel({ items }: CarouselSliderProps) {
           </div>
         </div>
 
-        {/* Right Arrow */}
         <CarouselButton
           onClickAction={handleNext}
           direction="right"
@@ -87,7 +84,6 @@ export function Carousel({ items }: CarouselSliderProps) {
         />
       </div>
 
-      {/* Dots Navigation */}
       <DotPagination
         items={Math.ceil(items.length / itemsPerScreen)}
         OnClickAction={handleNavigationClick}
