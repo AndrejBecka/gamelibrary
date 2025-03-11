@@ -46,16 +46,6 @@
   }
 }
 
-
-
-/* :root {
-  --neon-blue: 0, 234, 255;
-  --royal-blue: 0, 89, 255;
-  --electric-purple: 170, 47, 255;
-  --neon-pink: 255, 0, 255;
-
-} */
-
 :root {
   --neon-blue: 0, 234, 255;
   --royal-blue: 0, 89, 255;
@@ -111,6 +101,13 @@
 
   /* Star colors */
   --star: rgba(255, 255, 255, 1);
+
+  /* box shadows */
+
+  --box-shadow: 0 0 10px rgba(0, 234, 255, 0.2);
+  --neon-border-shadow: 0 0 20px rgba(0, 234, 255, 0.4);
+  --neon-card-shadow: 0 0 15px rgba(0, 234, 255, 0.1);
+  --neon-card-hover-shadow: 0 0 25px rgba(0, 234, 255, 0.2);
 }
 
 .dark {
@@ -237,25 +234,25 @@ body::before {
 
   .neon-border {
     @apply relative border border-neon-blue/30;
-    box-shadow: 0 0 10px rgba(0, 234, 255, 0.2);
+    box-shadow: var(--box-shadow)
   }
 
   .neon-border:hover {
     @apply border-neon-blue/50;
-    box-shadow: 0 0 20px rgba(0, 234, 255, 0.4);
+    box-shadow: var(--neon-border-shadow)
   }
 
   .neon-button:hover {
-    box-shadow: 0 0 20px rgba(0, 234, 255, 0.4);
+    box-shadow: var(--neon-border-shadow)
   }
 
   .neon-card {
     @apply relative overflow-hidden rounded-lg bg-black/50 border border-neon-blue/20 hover:border-neon-blue/40 transition-all duration-300 backdrop-blur-sm;
-    box-shadow: 0 0 15px rgba(0, 234, 255, 0.1);
+    box-shadow: var(--neon-card-shadow)
   }
 
   .neon-card:hover {
-    box-shadow: 0 0 25px rgba(0, 234, 255, 0.2);
+    box-shadow: var(--neon-card-hover-shadow)
   }
 
   .neon-input {
