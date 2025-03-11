@@ -1,5 +1,7 @@
 "use client";
 
+import { cn } from "~/lib/utils";
+
 interface DotPaginationProps {
   items: number;
   OnClickAction: (index: number) => void;
@@ -19,11 +21,12 @@ export const DotPagination = ({
         <button
           key={index}
           onClick={() => OnClickAction(index)}
-          className={`h-2 w-2 rounded-full transition-all duration-300 ${
+          className={cn(
+            "h-2 w-2 rounded-full transition-all duration-300",
             Math.floor(currentIndex / itemsPerScreen) === index
               ? "w-4 bg-white"
-              : "bg-white/50 hover:bg-white/75"
-          }`}
+              : "bg-white/50 hover:bg-white/75",
+          )}
           aria-label={`Go to slide ${index + 1}`}
         />
       ))}
