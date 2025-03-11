@@ -13,6 +13,7 @@ import {
   SEARCH_ROUTE,
 } from "./public-header.routes";
 import { RightSideActions } from "./right-side-action";
+import { cn } from "~/lib/utils";
 // Import the ThemeToggle component at the top of the file
 
 export const PublicHeaderNavigation = () => {
@@ -44,11 +45,12 @@ export const PublicHeaderNavigation = () => {
 
   return (
     <header
-      className={`fixed top-0 z-50 w-full transition-all duration-300 ${
+      className={cn(
+        `fixed top-0 z-50 w-full transition-all duration-300`,
         isScrolled
           ? "bg-black/90 backdrop-blur-sm"
-          : "bg-gradient-to-b from-black/80 to-transparent"
-      }`}
+          : "bg-gradient-to-b from-black/80 to-transparent",
+      )}
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
