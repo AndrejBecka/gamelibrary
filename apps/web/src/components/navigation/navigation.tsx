@@ -2,31 +2,45 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Search, Menu, X, ChevronDown, Bell, ShoppingCart } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { UserButton, SignInButton, SignUpButton, useUser } from "@clerk/nextjs";
+import {
+  type NavItem,
+  NOTIFICATIONS_ITEM,
+  PRIVATE_HEADER_ROUTES,
+  PUBLIC_HEADER_ROUTES,
+  PUBLIC_RIGHT_SIDE_ACTIONS,
+  SEARCH_ROUTE,
+} from "./public-header.routes";
+import { RightSideActions } from "./right-side-action";
 // Import the ThemeToggle component at the top of the file
 
-const HeaderNavigation = () => {
+export const PublicHeaderNavigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const { isSignedIn } = useUser();
 
-  const navigationMenu = ["Home", "Browse", "Categories"];
-
   // Handle scroll effect
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 0) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      setIsScrolled(window.scrollY > 0);
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const navigationItems = isSignedIn
+    ? [...PUBLIC_HEADER_ROUTES, ...PRIVATE_HEADER_ROUTES]
+    : PUBLIC_HEADER_ROUTES;
+
+  const rightSideActionItems = isSignedIn
+    ? [
+        PUBLIC_RIGHT_SIDE_ACTIONS[0] ?? SEARCH_ROUTE,
+        NOTIFICATIONS_ITEM,
+        ...PUBLIC_RIGHT_SIDE_ACTIONS.slice(1),
+      ].filter((item): item is NavItem => item !== undefined)
+    : PUBLIC_RIGHT_SIDE_ACTIONS;
 
   return (
     <header
@@ -49,79 +63,49 @@ const HeaderNavigation = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden space-x-8 md:flex">
-            {navigationMenu
-              .concat(isSignedIn ? ["My Library"] : []) // Conditionally add "My Library" if signed in
-              .filter(Boolean) // Filter out any falsy values (e.g., if "My Library" is not added)
-              .map((item) => (
-                <Link
-                  key={item}
-                  href={
-                    item === "Home"
-                      ? "/" // Home goes to root URL
-                      : item === "My Library"
-                        ? "/mylibrary" // My Library goes to /mylibrary
-                        : `/${item.toLowerCase().replace(" ", "-")}` // Other items to lowercase URL
-                  }
-                  className="text-gray-300 transition-colors duration-200 hover:text-[#00EAFF]"
-                >
-                  {item}
-                </Link>
-              ))}
+            {navigationItems.map(({ title, href }) => (
+              <Link
+                key={title}
+                href={href}
+                className="text-gray-300 opacity-90 transition-colors duration-200 hover:opacity-100"
+              >
+                {title}
+              </Link>
+            ))}
           </nav>
 
-          {/* Right side actions */}
+          {/* Right Side Actions */}
           <div className="flex items-center space-x-4">
-            <button
-              onClick={() => setIsSearchOpen(!isSearchOpen)}
-              className="text-gray-300 transition-colors duration-200 hover:text-[#00EAFF]"
-            >
-              <Search className="h-5 w-5" />
-            </button>
+            <RightSideActions
+              items={rightSideActionItems}
+              onClickHandlers={{ Search: () => setIsSearchOpen(!isSearchOpen) }}
+            />
 
-            {isSignedIn && (
-              <button className="text-gray-300 transition-colors duration-200 hover:text-[#00EAFF]">
-                <Bell className="h-5 w-5" />
-              </button>
+            {/* Auth - Show Sign In / Sign Up on Desktop */}
+            {!isSignedIn ? (
+              <div className="hidden space-x-2 md:flex">
+                <SignInButton mode="modal">
+                  <button className="block rounded-2xl border-2 border-white px-3 py-1 font-medium text-white transition-transform duration-200 hover:scale-110">
+                    Sign In
+                  </button>
+                </SignInButton>
+                <SignUpButton mode="modal">
+                  <button className="block rounded-md px-3 py-2 text-base font-medium text-gray-700 transition-transform duration-200 hover:scale-110 hover:rounded-2xl hover:bg-gray-100 hover:text-black dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white">
+                    Sign Up
+                  </button>
+                </SignUpButton>
+              </div>
+            ) : (
+              <UserButton
+                afterSignOutUrl="/"
+                appearance={{ elements: { userButtonAvatarBox: "h-8 w-8" } }}
+              />
             )}
 
-            <Link
-              href="/cart"
-              className="text-gray-300 transition-colors duration-200 hover:text-[#00EAFF]"
-            >
-              <ShoppingCart className="h-5 w-5" />
-            </Link>
-
-            {/* Auth */}
-            <div className="flex items-center">
-              {isSignedIn ? (
-                <UserButton
-                  afterSignOutUrl="/"
-                  appearance={{
-                    elements: {
-                      userButtonAvatarBox: "h-8 w-8",
-                    },
-                  }}
-                />
-              ) : (
-                <div className="flex space-x-2">
-                  <SignInButton mode="modal">
-                    <button className="block rounded-2xl border-2 border-white px-2 py-1 font-medium text-white transition-transform duration-200 hover:scale-110">
-                      Sign In
-                    </button>
-                  </SignInButton>
-                  <SignUpButton mode="modal">
-                    <button className="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-100 hover:rounded-2xl hover:text-black dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white transition-transform duration-200 hover:scale-110 ">
-                      Sign Up
-                    </button>
-                  </SignUpButton>
-                </div>
-              )}
-            </div>
-
-            {/* Mobile menu button */}
+            {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="text-gray-300 transition-colors duration-200 hover:text-[#00EAFF] md:hidden"
+              className="text-gray-300 opacity-90 transition-colors duration-200 hover:opacity-100 md:hidden"
             >
               {isMobileMenuOpen ? (
                 <X className="h-6 w-6" />
@@ -133,40 +117,38 @@ const HeaderNavigation = () => {
         </div>
       </div>
 
-      {/* Search overlay */}
-      {isSearchOpen && (
-        <div className="absolute left-0 top-full w-full bg-black/90 p-4 backdrop-blur-sm">
-          <div className="electric-border mx-auto flex max-w-3xl items-center overflow-hidden rounded">
-            <input
-              type="text"
-              placeholder="Search games..."
-              className="w-full bg-transparent px-4 py-2 text-white focus:outline-none"
-            />
-            <button className="bg-[#00EAFF] px-4 py-2 text-black transition-colors duration-200 hover:bg-[#0059FF]">
-              <Search className="h-5 w-5" />
-            </button>
-          </div>
-        </div>
-      )}
-
-      {/* Mobile menu */}
+      {/* Mobile Menu */}
       {isMobileMenuOpen && (
         <div className="bg-black/90 backdrop-blur-sm md:hidden">
           <div className="space-y-1 px-2 pb-3 pt-2">
-            {navigationMenu.filter(Boolean).map((item) => (
+            {navigationItems.map(({ title, href }) => (
               <Link
-                key={item}
-                href={`/${item.toLowerCase().replace(" ", "-")}`}
-                className="block px-3 py-2 text-gray-300 transition-colors duration-200 hover:text-[#00EAFF]"
+                key={title}
+                href={href}
+                className="block px-3 py-2 text-gray-300 transition-colors duration-200 hover:opacity-100"
               >
-                {item}
+                {title}
               </Link>
             ))}
+
+            {/* Auth (Only visible in mobile menu) */}
+            {!isSignedIn && (
+              <div className="mt-4 flex flex-col space-y-2">
+                <SignInButton mode="modal">
+                  <button className="block rounded-2xl border-2 border-white px-4 py-2 font-medium text-white transition-transform duration-200 hover:scale-110">
+                    Sign In
+                  </button>
+                </SignInButton>
+                <SignUpButton mode="modal">
+                  <button className="block rounded-md px-4 py-2 text-base font-medium text-gray-700 transition-transform duration-200 hover:scale-110 hover:rounded-2xl hover:bg-gray-100 hover:text-black dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white">
+                    Sign Up
+                  </button>
+                </SignUpButton>
+              </div>
+            )}
           </div>
         </div>
       )}
     </header>
   );
 };
-
-export default HeaderNavigation;

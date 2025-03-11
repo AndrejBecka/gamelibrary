@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { NavItem } from "./footer.routes";
+import { type NavItem } from "./footer.routes";
 
 interface FooterSectionProps {
   title: string;

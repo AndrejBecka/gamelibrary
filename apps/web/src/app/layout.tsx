@@ -7,7 +7,7 @@ import { TRPCReactProvider } from "~/trpc/react";
 
 import { ClerkProvider } from "@clerk/nextjs";
 import { ThemeProvider } from "next-themes";
-import HeaderNavigation from "~/components/navigation/navigation";
+import { PublicHeaderNavigation } from "~/components/navigation/navigation";
 import { Arcades } from "~/components/arcades";
 
 import { VT323 } from "next/font/google";
@@ -44,7 +44,7 @@ export default function RootLayout({
               defaultTheme="dark"
               enableSystem={false}
             >
-              <HeaderNavigation />
+              <PublicHeaderNavigation />
               <main className="relative z-10">{children}</main>
             </ThemeProvider>
           </body>
