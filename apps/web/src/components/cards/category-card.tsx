@@ -10,7 +10,7 @@ interface CategoryCardProps {
 export function CategoryCard({ category }: CategoryCardProps) {
   return (
     <Link
-      href={`/${PUBLIC_ROUTES.CATEGORIES}/${category.id}`}
+      href={`${PUBLIC_ROUTES.CATEGORIES}/${category.id}`}
       className="group relative overflow-hidden rounded-lg"
     >
       <div className="aspect-video overflow-hidden rounded-xl">
