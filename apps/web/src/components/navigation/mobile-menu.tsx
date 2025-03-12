@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { type NavItem } from "./public-header.routes";
 import { SignInButton, SignUpButton } from "@clerk/nextjs";
+import { Button } from "../ui/button";
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -31,14 +32,14 @@ export const MobileMenu = ({
         {!isSignedIn && (
           <div className="mt-4 flex flex-col space-y-2">
             <SignInButton mode="modal">
-              <button className="block rounded-2xl border-2 border-white px-4 py-2 font-medium text-white transition-transform duration-200 hover:scale-110">
+              <Button className="block rounded-2xl border-2 border-white bg-opacity-0 px-4 py-2 font-medium text-white transition-transform duration-200 hover:scale-110">
                 Sign In
-              </button>
+              </Button>
             </SignInButton>
             <SignUpButton mode="modal">
-              <button className="block rounded-md px-4 py-2 text-base font-medium text-gray-700 transition-transform duration-200 hover:scale-110 hover:rounded-2xl hover:bg-gray-100 hover:text-black dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white">
+              <Button className="block rounded-md bg-opacity-0 px-4 py-2 text-base font-medium text-gray-700 transition-transform duration-200 hover:scale-110 hover:rounded-2xl hover:bg-gray-100 hover:text-black dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white">
                 Sign Up
-              </button>
+              </Button>
             </SignUpButton>
           </div>
         )}

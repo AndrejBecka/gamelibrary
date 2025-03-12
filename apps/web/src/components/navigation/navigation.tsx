@@ -18,6 +18,7 @@ import { NavigationLinks } from "./navigation-links";
 import { PUBLIC_ROUTES } from "~/routes/routes";
 import { MobileMenu } from "./mobile-menu";
 import { AuthButton } from "./auth-buttons";
+import { Button } from "../ui/button";
 // Import the ThemeToggle component at the top of the file
 
 export const PublicHeaderNavigation = () => {
@@ -78,16 +79,16 @@ export const PublicHeaderNavigation = () => {
             ) : (
               <UserButton afterSwitchSessionUrl={PUBLIC_ROUTES.HOME} />
             )}
-            <button
+            <Button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="text-gray-300 opacity-90 transition-colors duration-200 hover:opacity-100 md:hidden"
+              className="bg-opacity-0 text-gray-300 opacity-90 transition-colors duration-200 hover:bg-opacity-0 md:hidden"
             >
               {isMobileMenuOpen ? (
-                <X className="h-6 w-6" />
+                <X className="h-6 w-6 bg-opacity-0" />
               ) : (
-                <Menu className="h-6 w-6" />
+                <Menu className="h-6 w-6 bg-opacity-0" />
               )}
-            </button>
+            </Button>
           </div>
         </div>
       </div>
