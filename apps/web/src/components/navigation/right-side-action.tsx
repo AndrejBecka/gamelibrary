@@ -18,7 +18,7 @@ export const RightSideActions = ({
           <Component
             key={title}
             href={href}
-            className="text-gray-300 opacity-90 transition-colors duration-200 hover:opacity-100"
+            className="text-gray-300 opacity-90 transition-transform duration-200 hover:scale-110 hover:opacity-100"
             onClick={onClickHandlers[title]}
           >
             {Icon && <Icon className="h-5 w-5" />}

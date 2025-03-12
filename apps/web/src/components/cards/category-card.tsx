@@ -1,6 +1,7 @@
 import { type Category } from "@prisma/client";
 import Image from "next/image";
 import Link from "next/link";
+import { PUBLIC_ROUTES } from "~/routes/routes";
 
 interface CategoryCardProps {
   category: Category;
@@ -9,7 +10,7 @@ interface CategoryCardProps {
 export function CategoryCard({ category }: CategoryCardProps) {
   return (
     <Link
-      href={`/categories/${category.id}`}
+      href={`/${PUBLIC_ROUTES.CATEGORIES}/${category.id}`}
       className="group relative overflow-hidden rounded-lg"
     >
       <div className="aspect-video overflow-hidden rounded-xl">

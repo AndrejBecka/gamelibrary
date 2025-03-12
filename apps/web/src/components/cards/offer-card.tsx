@@ -1,5 +1,6 @@
 import { type SpecialOffer } from "@prisma/client";
 import Image from "next/image";
+import { Button } from "../ui/button";
 
 interface offerCardProps {
   offer: SpecialOffer;
@@ -23,11 +24,11 @@ export function OfferCard({ offer }: offerCardProps) {
           {offer.title}
         </h3>
         <p className="space-y-4 text-gray-400">{offer.description}</p>
-        <button className="w-fit rounded-2xl border-2 border-white px-6 py-3 font-medium text-white backdrop-blur-sm transition-transform duration-200 hover:scale-110">
+        <Button className="w-fit rounded-2xl border-2 border-white bg-opacity-0 px-6 py-3 font-medium text-white backdrop-blur-sm transition-transform duration-200 hover:scale-110 hover:bg-opacity-0">
           <span className="animate-gradient-text bg-white bg-clip-text text-transparent">
             Shop Now
           </span>
-        </button>
+        </Button>
       </div>
     </div>
   );

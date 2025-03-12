@@ -15,4 +15,5 @@ export const PRIVATE_ROUTES = {
   ANALYTICS: `${DASHBOARD_ROUTE}/analytics`,
   PROFILE: "/profile",
   MY_LIBRARY: "/my-library",
+  NOTIFICATIONS: "/notifications",
 };

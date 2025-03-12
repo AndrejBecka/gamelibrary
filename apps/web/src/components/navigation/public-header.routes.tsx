@@ -1,4 +1,5 @@
 import { Bell, type LucideIcon, Search, ShoppingCart } from "lucide-react";
+import { PRIVATE_ROUTES, PUBLIC_ROUTES } from "~/routes/routes";
 
 export type NavItem = {
   title: string;
@@ -9,34 +10,34 @@ export type NavItem = {
 export const PUBLIC_HEADER_ROUTES: NavItem[] = [
   {
     title: "Home",
-    href: "/",
+    href: PUBLIC_ROUTES.HOME,
   },
   {
     title: "Browse",
-    href: "/browse",
+    href: PUBLIC_ROUTES.BROWSE,
   },
   {
     title: "Categories",
-    href: "/categories",
+    href: PUBLIC_ROUTES.CATEGORIES,
   },
 ];
 
 export const PRIVATE_HEADER_ROUTES: NavItem[] = [
   {
     title: "My Library",
-    href: "/my-library",
+    href: PRIVATE_ROUTES.MY_LIBRARY,
   },
 ];
 
 export const SEARCH_ROUTE: NavItem = {
   title: "Search",
-  href: "#",
+  href: PUBLIC_ROUTES.SEARCH,
   icon: Search,
 };
 
 export const CART_ROUTE: NavItem = {
   title: "Cart",
-  href: "/cart",
+  href: PUBLIC_ROUTES.CART,
   icon: ShoppingCart,
 };
 
@@ -44,6 +45,6 @@ export const PUBLIC_RIGHT_SIDE_ACTIONS: NavItem[] = [SEARCH_ROUTE, CART_ROUTE];
 
 export const NOTIFICATIONS_ITEM: NavItem = {
   title: "Notifications",
-  href: "#",
+  href: PRIVATE_ROUTES.NOTIFICATIONS,
   icon: Bell,
 };
